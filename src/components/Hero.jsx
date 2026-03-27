@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import HeroTypewriterTitle from './HeroTypewriter'
 import './Hero.css'
 
 export default function Hero() {
@@ -50,12 +51,9 @@ export default function Hero() {
           <span className="hero-bracket hero-bracket--bl" aria-hidden />
           <span className="hero-bracket hero-bracket--br" aria-hidden />
 
-          <h1 className="hero-headline">
+          <h1 className="hero-headline" aria-label="Level up">
             <div className="hero-title-row">
-              <span className="hero-title-text hero-title-text--stack">
-                <span className="hero-line hero-line--primary">Level</span>
-                <span className="hero-line hero-line--primary">up</span>
-              </span>
+              <HeroTypewriterTitle />
             </div>
             <span className="hero-line hero-line--secondary">ICE BREAKER</span>
           </h1>
