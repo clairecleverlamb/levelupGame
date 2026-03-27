@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import Hero from './components/Hero'
-import { FourCornersQuestion, FourCornersQuestion2, FourCornersTimer } from './components/GameFourCorners'
+import { FourCornersQuestion, FourCornersTimer } from './components/GameFourCorners'
 import SharePrompts from './components/SharePrompts'
-import { ClumpsIntro, ClumpsCommands } from './components/GamePirate'
-import { BiathlonIntro, BiathlonClean, BiathlonActsVersion, BiathlonIllustration, BiathlonRules } from './components/GameBiathlon'
+import { ClumpsIntro } from './components/GamePirate'
+import { BiathlonIntro } from './components/GameBiathlon'
 import WinterOlympics from './components/WinterOlympics'
+import PassingEgg from './components/PassingEgg'
+import FloorIsLava from './components/FloorIsLava'
 import WinnerAnnouncement from './components/WinnerAnnouncement'
 import Thanks from './components/Thanks'
 import CelebrationModal from './components/CelebrationModal'
@@ -46,48 +48,34 @@ function App() {
       <div className="app">
         <Hero />
 
-        {/* Game 1: 4 Corners */}
-        <section id="game1-q">
+        {/* First challenge: 4 Corners */}
+        <section id="game1-q" className="section--compact">
           <FourCornersQuestion />
         </section>
-        <section id="game1-q2">
-          <FourCornersQuestion2 />
-        </section>
-        <section id="game1-share">
+        <section id="game1-share" className="section--compact section--share-tight">
           <SharePrompts />
         </section>
         <section id="game1-timer">
           <FourCornersTimer />
         </section>
 
-        {/* Game 2: Clumps */}
+        {/* Challenge 2: Electricity */}
         <section id="game2-intro">
           <ClumpsIntro />
         </section>
-        <section id="game2-commands">
-          <ClumpsCommands />
-        </section>
 
         {/* Winter Olympics Transition */}
-        <section id="olympics">
+        <section id="olympics" className="section--olympics-full">
           <WinterOlympics />
         </section>
 
-        {/* Game 3: Biathlon */}
+        <PassingEgg />
+
+        <FloorIsLava />
+
+        {/* Challenge 3: Freeze Frame */}
         <section id="game3-intro">
           <BiathlonIntro />
-        </section>
-        <section id="game3-clean">
-          <BiathlonClean />
-        </section>
-        <section id="game3-acts">
-          <BiathlonActsVersion />
-        </section>
-        <section id="game3-illu">
-          <BiathlonIllustration />
-        </section>
-        <section id="game3-rules">
-          <BiathlonRules />
         </section>
 
         {/* Winner */}

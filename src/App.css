@@ -4,8 +4,67 @@
 
 .app section {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-margin-top: 0;
+  scroll-margin-top: 0.5rem;
+  padding: 1.5rem 0;
+}
+
+/* Tight sections: no forced full viewport (puzzles + share stack closer) */
+.app section.section--compact {
+  min-height: unset;
+  display: block;
+  padding: 2rem 0 1.5rem;
+}
+
+.app section.section--share-tight {
+  padding-top: 0.5rem;
+  margin-top: -0.5rem;
+}
+
+/* Olympics diagram: edge-to-edge, no vertical padding — image uses full viewport height */
+.app section.section--olympics-full {
+  padding: 0;
+  align-items: stretch;
+}
+
+.app section.section--olympics-full > * {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Egg challenge: two full-viewport screens (title + photo, then graphic) */
+.app section.section--egg-full {
+  padding: 0;
+  align-items: stretch;
+}
+
+.app section.section--egg-full > * {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Floor is lava: full viewport, own background */
+.app section.section--lava-full {
+  padding: 0;
+  align-items: stretch;
+}
+
+.app section.section--lava-full > * {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+}
+
+.app section:nth-child(even) {
+  background: linear-gradient(
+    180deg,
+    rgba(20, 28, 26, 0.35) 0%,
+    rgba(12, 10, 9, 0.2) 45%,
+    rgba(8, 12, 11, 0.5) 100%
+  );
 }

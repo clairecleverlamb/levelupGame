@@ -4,6 +4,49 @@
   max-width: 900px;
 }
 
+.section-title.section-title--freeze {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(4rem, 17vw, 13rem);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-transform: none;
+  margin-bottom: clamp(1rem, 3vw, 1.5rem);
+  color: #f8fafc;
+  text-shadow:
+    0 5px 0 rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(34, 211, 238, 0.55),
+    0 0 90px rgba(163, 230, 53, 0.4),
+    0 0 120px rgba(244, 114, 182, 0.2);
+  animation: freezeTitlePulse 3.5s ease-in-out infinite;
+}
+
+.freeze-frame-hero-img {
+  display: block;
+  width: 100%;
+  max-width: min(100%, 72rem);
+  margin: 0 auto;
+  max-height: min(72vh, 900px);
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(15, 23, 42, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+@keyframes freezeTitlePulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
+  }
+}
+
 .biathlon-step {
   margin-bottom: 0;
 }
@@ -147,6 +190,16 @@
 @media (min-width: 1200px) {
   .biathlon-section {
     max-width: 1400px;
+  }
+
+  .section-title.section-title--freeze {
+    font-size: clamp(6rem, 14vw, 15rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .freeze-frame-hero-img {
+    border-radius: 24px;
+    max-height: min(72vh, 960px);
   }
 
   .step-badge {

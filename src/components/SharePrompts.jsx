@@ -1,9 +1,9 @@
 import './SharePrompts.css'
 
 const questions = [
-  { num: 1, text: 'If you could spend a day in someone else\'s life, whose life would you choose? Why?', color: '#6366f1' },
-  { num: 2, text: 'If you were setting off to Mars with one item, what would it be?', color: '#f97316' },
-  { num: 3, text: 'If aliens came to Earth, what ONE food would you give them to impress them haha?', color: '#10b981' },
+  { num: 1, text: 'What’s one thing you want to leave this camp better at than when you came in?', color: '#22d3ee' },
+  { num: 2, text: 'Are you an overpacker (just in case) or an underpacker (we’ll figure it out) when it comes to packing for camping or a trip?', color: '#facc15' },
+  { num: 3, text: 'What’s one “challenge” in your life that actually helped you grow the most?', color: '#4ade80' },
 ]
 
 export default function SharePrompts() {

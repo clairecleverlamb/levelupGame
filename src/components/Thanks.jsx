@@ -12,7 +12,7 @@ export default function Thanks() {
         if (entry.isIntersecting && !firedRef.current) {
           firedRef.current = true
           const end = Date.now() + 3000
-          const colors = ['#4f46e5', '#818cf8', '#fef08a', '#facc15', '#f97316', '#fff']
+          const colors = ['#a3e635', '#22d3ee', '#f472b6', '#facc15', '#fff']
           const frame = () => {
             confetti({
               particleCount: 4,
@@ -41,9 +41,10 @@ export default function Thanks() {
 
   return (
     <div className="section thanks-section" ref={sectionRef}>
-      <div className="thanks-content">
-        <h2 className="thanks-title">Thanks for Playing!</h2>
-        <p className="thanks-text">Let's dive into the book of Acts NOW</p>
+      <div className="thanks-spotlight">
+        <p className="thanks-badge">Level Up 2026</p>
+        <h2 className="thanks-title">Thanks for playing!</h2>
+        <p className="thanks-text">You leveled up today — see you at the next round!</p>
       </div>
     </div>
   )

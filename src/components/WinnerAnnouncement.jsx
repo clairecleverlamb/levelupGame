@@ -10,19 +10,23 @@ export default function WinnerAnnouncement({ onAnnounce }) {
 
   return (
     <div className="section winner-section">
-      <p className="section-label">Celebration</p>
-      <h2 className="section-title winner-title">Announce Winners</h2>
-      <div className="winner-input-group">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter winning team name (e.g. Team Red, Corner 1)"
-          onKeyDown={(e) => e.key === 'Enter' && handleClick()}
-        />
-        <button className="btn btn-announce" onClick={handleClick}>
-          Announce Winner!
-        </button>
+      <div className="winner-spotlight">
+        <p className="section-label section-label--challenge winner-kicker">Celebration</p>
+        <h2 className="winner-title">Announce Winners</h2>
+        <p className="winner-sub">Name the crew who took it home — then make it official.</p>
+        <div className="winner-input-group">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Winning team or table name…"
+            onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+            aria-label="Winning team name"
+          />
+          <button type="button" className="btn-announce" onClick={handleClick}>
+            Announce winner
+          </button>
+        </div>
       </div>
     </div>
   )

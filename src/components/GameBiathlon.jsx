@@ -3,16 +3,14 @@ import './GameBiathlon.css'
 export function BiathlonIntro() {
   return (
     <div className="section biathlon-section">
-      <p className="section-label">Game 3</p>
-      <h2 className="section-title">Biathlon — Church Cleaning Version</h2>
-      <div className="biathlon-step">
-        <div className="step-badge">What is Biathlon?</div>
-        <img
-          src="/biathlon.png"
-          alt="Biathlon challenge — skiing and target shooting"
-          className="biathlon-img"
-        />
-      </div>
+      <p className="section-label section-label--challenge">Challenge 3</p>
+      <h2 className="section-title section-title--freeze">Freeze Frame</h2>
+      <img
+        src="/freezeframe.png"
+        alt="Six people in playful freeze-frame poses in a park with props: rubber chicken, pineapple, unicorn, candelabra, lampshade, and juggling oranges"
+        className="freeze-frame-hero-img"
+        decoding="async"
+      />
     </div>
   )
 }

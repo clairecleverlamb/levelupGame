@@ -1,135 +1,337 @@
+/* ——— Video ——— */
 .hero {
+  position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
-  position: relative;
+  padding: 2rem 1.25rem 3rem;
   overflow: hidden;
-  background: #0c0f14;
+  /* Nature-toned base — soft behind video; no hard “black frame” */
+  background:
+    radial-gradient(ellipse 95% 80% at 50% 35%, rgba(45, 110, 95, 0.45) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 55% at 20% 85%, rgba(15, 60, 55, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse 65% 50% at 88% 75%, rgba(30, 90, 80, 0.35) 0%, transparent 48%),
+    linear-gradient(168deg, #050d0c 0%, #0a1c1a 28%, #0d2622 55%, #081412 100%);
 }
 
-/* Video background */
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Full frame visible = less aggressive crop, reads sharper on low-res sources */
 .hero-video {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* GPU layer for smoother playback under text overlays */
+  transform: translate3d(-50%, -50%, 0);
+  object-fit: contain;
+  object-position: center;
   z-index: 0;
+  filter: saturate(1.07) contrast(1.04);
 }
 
-/* Dark overlay — charcoal with slight cool tint (readable text) */
-.hero-overlay {
+.hero-vignette {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(12, 15, 20, 0.65) 0%,
-    rgba(15, 23, 42, 0.72) 50%,
-    rgba(12, 15, 20, 0.78) 100%
-  );
   z-index: 1;
+  pointer-events: none;
+  /* Feathered edges into deep green/black — not a hard rectangle */
+  background:
+    radial-gradient(ellipse 85% 70% at 50% 42%, transparent 0%, transparent 38%, rgba(3, 12, 11, 0.35) 72%, rgba(2, 8, 7, 0.82) 100%),
+    radial-gradient(ellipse 120% 90% at 50% 100%, rgba(0, 0, 0, 0.45) 0%, transparent 45%),
+    radial-gradient(ellipse 100% 55% at 50% 0%, rgba(4, 14, 12, 0.5) 0%, transparent 42%),
+    radial-gradient(ellipse 100% 65% at 50% 25%, rgba(163, 230, 53, 0.1), transparent 52%),
+    radial-gradient(ellipse 70% 55% at 85% 75%, rgba(244, 114, 182, 0.06), transparent 48%),
+    linear-gradient(180deg, rgba(5, 14, 12, 0.35) 0%, rgba(6, 18, 16, 0.12) 45%, rgba(3, 10, 9, 0.55) 100%);
 }
 
+.hero-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.022;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.4) 2px,
+    rgba(0, 0, 0, 0.4) 4px
+  );
+}
+
+/* ——— Content ——— */
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  width: min(100%, 72rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  max-width: 100%;
+  gap: 0;
 }
 
-/* Top line — small caps, white */
-.hero-subtitle {
-  font-family: 'Outfit', system-ui, sans-serif;
-  font-size: clamp(0.7rem, 1.8vw, 0.95rem);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.92);
-  letter-spacing: 0.28em;
+/* Year + meta — larger, high-contrast strip */
+.hero-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.65rem, 2.4vw, 1.35rem);
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.hero-year-chip {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.35rem, 4.2vw, 2.1rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  padding: 0.65rem 1.15rem 0.65rem 1.35rem;
+  color: #f8fffe;
+  text-shadow: 0 0 24px rgba(34, 211, 238, 0.45);
+  background: linear-gradient(
+    165deg,
+    rgba(15, 30, 45, 0.92) 0%,
+    rgba(12, 22, 38, 0.88) 100%
+  );
+  border: 2px solid rgba(56, 189, 248, 0.75);
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(165, 243, 252, 0.15),
+    0 0 40px rgba(34, 211, 238, 0.45),
+    0 0 72px rgba(34, 211, 238, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.hero-meta-sep {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.45rem, 4.5vw, 2.15rem);
+  font-weight: 400;
+  color: rgba(103, 232, 249, 0.95);
+  line-height: 1;
+  user-select: none;
+  text-shadow:
+    0 0 12px rgba(34, 211, 238, 0.5),
+    0 0 28px rgba(34, 211, 238, 0.25);
+}
+
+.hero-meta-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.15rem, 3.8vw, 1.95rem);
+  font-weight: 800;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin: 0 0 0.25rem;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+  color: #f1f5f9;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.35),
+    0 0 28px rgba(34, 211, 238, 0.4),
+    0 0 48px rgba(56, 189, 248, 0.22),
+    0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
-.hero-heading {
+/* Framed headline — hierarchy: Level up >> Ice breaker */
+.hero-headline-frame {
+  position: relative;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 7vw, 4rem);
+  margin: 0 auto;
+}
+
+/* Gradient corner brackets */
+.hero-bracket {
+  position: absolute;
+  width: clamp(26px, 6vw, 40px);
+  height: clamp(26px, 6vw, 40px);
+  pointer-events: none;
+  border-color: rgba(190, 242, 100, 0.9);
+  border-style: solid;
+  border-width: 0;
+  filter: drop-shadow(0 0 12px rgba(163, 230, 53, 0.55));
+}
+
+.hero-bracket--tl {
+  top: 0;
+  left: 0;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-radius: 2px 0 0 0;
+}
+
+.hero-bracket--tr {
+  top: 0;
+  right: 0;
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-radius: 0 2px 0 0;
+}
+
+.hero-bracket--bl {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  border-radius: 0 0 0 2px;
+}
+
+.hero-bracket--br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+  border-radius: 0 0 2px 0;
+}
+
+.hero-headline {
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.15em;
+  gap: 0.5rem;
   line-height: 1;
 }
 
-/* Middle block — yellow–gold, condensed (like “Acts Bible Camp” line) */
-.hero-title-main {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3.25rem, 11vw, 7.5rem);
+.hero-title-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  width: 100%;
+  max-width: min(100%, 90rem);
+  margin: 0 auto;
+}
+
+.hero-title-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  text-align: center;
+}
+
+/* PRIMARY — static gradient (no anim — avoids jank with background video) */
+.hero-line--primary {
+  display: block;
+  font-family: 'Titan One', sans-serif;
   font-weight: 400;
-  color: #facc15;
+  font-size: clamp(4.75rem, 23vw, 16.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: capitalize;
+  position: relative;
+  z-index: 1;
+  -webkit-text-stroke: 2px rgba(10, 40, 18, 0.55);
+  background: linear-gradient(
+    105deg,
+    #fffef0 0%,
+    #ecfccb 12%,
+    #d9f99d 22%,
+    #a3e635 38%,
+    #d4fc4a 48%,
+    #eab308 62%,
+    #84cc16 82%,
+    #bef264 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Fewer filter layers than before — static, cheaper to composite */
+  filter: drop-shadow(0 9px 0 rgba(8, 52, 22, 0.72))
+    drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 36px rgba(163, 230, 53, 0.4));
+}
+
+/* SECONDARY — one line, larger; solid + text-shadow (no filter anim / clip churn) */
+.hero-line--secondary {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.35rem, 4.2vw, 5.25rem);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding-top: 0.65rem;
+  margin-top: 0.35rem;
+  max-width: 100%;
+  line-height: 1.15;
+  border-top: 2px solid rgba(186, 230, 253, 0.65);
+  color: #f0fdff;
+  -webkit-text-fill-color: #f0fdff;
   text-shadow:
-    0 0 24px rgba(250, 204, 21, 0.55),
-    0 0 48px rgba(250, 204, 21, 0.25),
-    0 4px 28px rgba(0, 0, 0, 0.65);
+    0 0 2px rgba(255, 255, 255, 0.95),
+    0 1px 0 rgba(8, 40, 55, 0.9),
+    0 0 18px rgba(165, 243, 252, 0.85),
+    0 0 36px rgba(56, 189, 248, 0.55),
+    0 0 56px rgba(34, 211, 238, 0.35),
+    0 4px 20px rgba(0, 0, 0, 0.65);
 }
 
-/* Bottom line — largest, white glow (like “ICE BREAKER GAMES!”) */
-.hero-title-accent {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4.25rem, 16vw, 11rem);
-  font-weight: 400;
-  color: #fff;
-  -webkit-text-fill-color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 0.95;
-  text-shadow:
-    0 0 22px rgba(255, 255, 255, 0.95),
-    0 0 55px rgba(199, 210, 254, 0.65),
-    0 0 100px rgba(129, 140, 248, 0.45),
-    0 6px 24px rgba(0, 0, 0, 0.55);
-  animation: accentGlow 2.2s ease-in-out infinite alternate;
+.hero-line--secondary::after {
+  content: '';
+  display: block;
+  width: min(7rem, 55vw);
+  height: 4px;
+  margin: 0.85rem auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(224, 242, 254, 0.2),
+    rgba(186, 230, 253, 0.95),
+    rgba(125, 211, 252, 0.85),
+    rgba(224, 242, 254, 0.2),
+    transparent
+  );
+  border-radius: 3px;
+  box-shadow: 0 0 16px rgba(165, 243, 252, 0.5);
+  opacity: 0.95;
 }
 
-@keyframes accentGlow {
-  from {
-    text-shadow:
-      0 0 18px rgba(255, 255, 255, 0.85),
-      0 0 45px rgba(199, 210, 254, 0.5),
-      0 0 85px rgba(129, 140, 248, 0.35),
-      0 6px 20px rgba(0, 0, 0, 0.5);
-  }
-  to {
-    text-shadow:
-      0 0 32px rgba(255, 255, 255, 1),
-      0 0 72px rgba(199, 210, 254, 0.85),
-      0 0 120px rgba(129, 140, 248, 0.55),
-      0 8px 28px rgba(0, 0, 0, 0.55);
-  }
-}
-
-.scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
+.hero-scroll-hint {
+  margin-top: 1.75rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.72rem, 1.8vw, 0.9rem);
   font-weight: 600;
-  animation: bounce 2s ease-in-out infinite;
-  z-index: 2;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(165, 243, 252, 0.65);
+  transition: color 0.2s ease;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
+.hero-scroll-hint:hover {
+  color: rgba(103, 232, 249, 0.95);
+}
+
+.hero-scroll-hint:focus-visible {
+  outline: 2px solid rgba(34, 211, 238, 0.75);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@media (max-width: 480px) {
+  .hero-meta-row {
+    flex-direction: column;
+    gap: 0.35rem;
   }
-  50% {
-    transform: translateY(8px);
+
+  .hero-meta-sep {
+    font-size: 1rem;
+    opacity: 0.75;
+  }
+
+  .hero-line--secondary {
+    letter-spacing: 0.08em;
+    font-size: clamp(0.88rem, 3.1vw, 5.25rem);
   }
 }

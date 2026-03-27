@@ -1,0 +1,89 @@
+/* Full viewport: title → egg splat (transparent) → photo */
+
+.egg-screen {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.75rem, 5vw, 3.25rem) max(env(safe-area-inset-left), 0.75rem)
+    clamp(1.75rem, 5vw, 3.25rem) max(env(safe-area-inset-right), 0.75rem);
+  box-sizing: border-box;
+}
+
+.egg-screen--lead {
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+.egg-pass-title {
+  flex-shrink: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  color: var(--text);
+  text-transform: none;
+  margin: clamp(1.5rem, 5vw, 3.25rem) 0 clamp(1.75rem, 5.5vw, 3.5rem);
+  text-align: center;
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.45),
+    0 0 48px rgba(163, 230, 53, 0.35);
+}
+
+.egg-pass-img {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: block;
+  width: 100%;
+  max-height: min(52vh, 560px);
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Transparent PNG — no fake white box; subtle depth only */
+.egg-drop-wrap {
+  flex: 0 1 auto;
+  width: 100%;
+  max-width: min(100%, 48rem);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.egg-drop-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(30vh, 360px);
+  object-fit: contain;
+  object-position: center;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+@media (min-width: 1200px) {
+  .egg-pass-title {
+    font-size: clamp(4rem, 7vw, 7rem);
+  }
+
+  .egg-pass-img {
+    max-height: min(48vh, 620px);
+  }
+
+  .egg-drop-wrap {
+    max-width: min(100%, 56rem);
+  }
+
+  .egg-drop-img {
+    max-height: min(34vh, 440px);
+  }
+}

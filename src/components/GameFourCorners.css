@@ -14,12 +14,95 @@
   margin-bottom: 0.5rem;
 }
 
+/* Challenge strip — much more visible than default .section-label */
+.section-label--challenge {
+  font-size: clamp(1.1rem, 3.8vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lu-neon-lime, var(--primary));
+  margin-bottom: 0.75rem;
+  text-shadow:
+    0 0 20px rgba(163, 230, 53, 0.55),
+    0 0 40px rgba(34, 211, 238, 0.25);
+}
+
 .section-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.5rem;
   color: var(--text);
   margin-bottom: 1.5rem;
   letter-spacing: 0.05em;
+}
+
+/* “Fit Your Puzzles” — poster-scale headline */
+.section-title--challenge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-align: center;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  font-size: clamp(2.75rem, 14vw, 9rem);
+  color: var(--text);
+  text-shadow:
+    0 4px 0 rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(163, 230, 53, 0.35);
+}
+
+/* Tighter title spacing; grid height is driven below (vertical emphasis) */
+.section--puzzles {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.section--puzzles .section-title--challenge {
+  font-size: clamp(1.75rem, 6vw, 4.25rem);
+  margin-bottom: 0.45rem;
+  line-height: 1.05;
+}
+
+.section--puzzles .section-label {
+  margin-bottom: 0.35rem;
+}
+
+/* 2×2 puzzle reference — taller grid (fills vertical space; not letterbox-short) */
+.puzzle-reference-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: clamp(0.35rem, 1.2vw, 0.75rem);
+  width: 100%;
+  max-width: min(100%, 96rem);
+  height: min(86vh, calc(100dvh - 5rem));
+  max-height: min(86vh, 1056px);
+  min-height: 312px;
+  margin: 0 auto 0.5rem;
+  box-sizing: border-box;
+}
+
+.puzzle-reference-cell {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0f0f12;
+  border: 2px solid rgba(163, 230, 53, 0.35);
+  min-height: 0;
+  min-width: 0;
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.35),
+    0 8px 28px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.puzzle-reference-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
 }
 
 .card {
@@ -36,98 +119,172 @@
   margin-bottom: 0.75rem;
 }
 
-/* 4 Corners Question */
-.corners-question {
-  margin-bottom: 2rem;
-}
-
-.question-text {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: var(--text);
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-/* Summer vs Winter image */
-.sw-image-wrapper {
-  width: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.12);
-}
-
-.sw-image {
-  width: 100%;
-  display: block;
-}
-
-/* Walk vs Indoor choices — stacked vertically */
-.choices-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.choice-box {
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.choice-box img {
-  width: 100%;
-  max-height: 35vh;
-  object-fit: cover;
-  border-radius: 14px;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
-}
-
-.choice-walk {
-  background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-  border: 3px solid #f87171;
-}
-
-.choice-indoor {
-  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
-  border: 3px solid #9ca3af;
-}
-
-/* Timer */
+/* Timer — dark HUD panel, lime/cyan (matches hero) */
 .timer-box {
-  background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+  background: linear-gradient(
+    155deg,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(8, 18, 14, 0.96) 45%,
+    rgba(12, 22, 20, 0.94) 100%
+  );
   border-radius: 24px;
   padding: 3rem 4rem;
   text-align: center;
   margin: 0;
-  border: 3px solid var(--primary);
+  border: 1px solid rgba(163, 230, 53, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 24px 56px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.timer-box .section-label,
+.timer-box__eyebrow {
+  color: rgba(165, 243, 252, 0.88);
+  letter-spacing: 0.18em;
+  margin-bottom: 0.75rem;
+}
+
+.timer-box__eyebrow {
+  font-size: clamp(0.72rem, 2vw, 0.95rem);
+  max-width: 42em;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.35;
 }
 
 .timer-box.timer-warning {
-  background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-  border-color: var(--accent);
+  background: linear-gradient(
+    155deg,
+    rgba(45, 25, 12, 0.95) 0%,
+    rgba(28, 15, 8, 0.98) 100%
+  );
+  border-color: rgba(251, 191, 36, 0.55);
+  box-shadow:
+    0 0 40px rgba(251, 191, 36, 0.12),
+    0 24px 56px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.timer-box.timer-warning .section-label,
+.timer-box.timer-warning .timer-box__eyebrow {
+  color: rgba(254, 215, 170, 0.95);
+}
+
+/* Big digital readout + progress ring */
+.timer-hero {
+  position: relative;
+  width: min(100%, 36rem);
+  aspect-ratio: 1;
+  max-width: min(96vw, 560px);
+  margin: 0.35rem auto 0.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.timer-ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 24px rgba(163, 230, 53, 0.2));
+}
+
+.timer-ring-track {
+  stroke: rgba(163, 230, 53, 0.14);
+  stroke-width: 10;
+}
+
+.timer-ring-fill {
+  stroke: url(#timer-ring-gradient);
+  stroke-width: 10;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-box.timer-warning .timer-ring-track {
+  stroke: rgba(251, 191, 36, 0.2);
+}
+
+.timer-box.timer-warning .timer-ring-fill {
+  stroke: url(#timer-ring-gradient-warn);
 }
 
 .timer-display {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(6rem, 15vw, 10rem);
-  color: var(--primary-dark);
-  margin: 0.5rem 0;
-  letter-spacing: 0.02em;
-  line-height: 1;
+  position: relative;
+  z-index: 1;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(7.5rem, 20vw, 14rem);
+  margin: 0;
+  padding: 0 0.15em;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: #ecfccb;
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(163, 230, 53, 0.45),
+    0 0 100px rgba(34, 211, 238, 0.18);
+}
+
+.timer-box.timer-warning .timer-display {
+  color: #fde68a;
+  text-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.45),
+    0 0 56px rgba(251, 191, 36, 0.5),
+    0 0 90px rgba(245, 158, 11, 0.25);
+}
+
+.timer-box--running .timer-display {
+  animation: timer-display-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes timer-display-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+    text-shadow:
+      0 3px 0 rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(163, 230, 53, 0.45),
+      0 0 100px rgba(34, 211, 238, 0.18);
+  }
+  50% {
+    filter: brightness(1.08);
+    text-shadow:
+      0 3px 0 rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(163, 230, 53, 0.65),
+      0 0 120px rgba(34, 211, 238, 0.28);
+  }
+}
+
+.timer-box.timer-warning.timer-box--running .timer-display {
+  animation: timer-display-pulse-warn 1.8s ease-in-out infinite;
+}
+
+@keyframes timer-display-pulse-warn {
+  0%,
+  100% {
+    filter: brightness(1);
+    text-shadow:
+      0 3px 0 rgba(0, 0, 0, 0.45),
+      0 0 56px rgba(251, 191, 36, 0.5),
+      0 0 90px rgba(245, 158, 11, 0.25);
+  }
+  50% {
+    filter: brightness(1.1);
+    text-shadow:
+      0 3px 0 rgba(0, 0, 0, 0.45),
+      0 0 76px rgba(251, 191, 36, 0.72),
+      0 0 110px rgba(239, 68, 68, 0.2);
+  }
 }
 
 .timer-label {
-  font-size: 1.25rem;
+  font-size: clamp(1.05rem, 2.8vw, 1.45rem);
   font-weight: 600;
-  color: var(--text);
-  opacity: 0.9;
-  margin-top: 0.5rem;
+  color: rgba(214, 211, 209, 0.9);
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+  letter-spacing: 0.02em;
 }
 
 .timer-buttons {
@@ -146,34 +303,48 @@
   font-weight: 700;
   font-size: 1.15rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: #fff;
+  background: linear-gradient(180deg, #4ade80 0%, var(--primary) 55%, #15803d 100%);
+  color: #052e16;
+  box-shadow: 0 4px 0 #14532d, 0 8px 24px rgba(34, 197, 94, 0.25);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: var(--primary-dark);
+  filter: brightness(1.06);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+  box-shadow: 0 6px 28px rgba(34, 197, 94, 0.4);
 }
 
 .btn-primary:disabled {
-  opacity: 0.7;
+  opacity: 0.55;
   cursor: not-allowed;
+  filter: grayscale(0.2);
 }
 
 .btn-secondary {
-  background: var(--bg-card);
-  color: var(--text);
-  border: 2px solid var(--primary);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ecfeff;
+  border: 2px solid rgba(34, 211, 238, 0.45);
 }
 
 .btn-secondary:hover {
-  background: #eef2ff;
+  background: rgba(34, 211, 238, 0.12);
   transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timer-box--running .timer-display,
+  .timer-box.timer-warning.timer-box--running .timer-display {
+    animation: none;
+  }
+
+  .timer-ring-fill {
+    transition: none;
+  }
 }
 
 /* ====== Large Screen Overrides ====== */
@@ -182,9 +353,44 @@
     font-size: 1.2rem;
   }
 
+  .section-label--challenge {
+    font-size: clamp(1.45rem, 4.2vw, 2.65rem);
+    letter-spacing: 0.26em;
+    margin-bottom: 1rem;
+  }
+
+  .section-title--challenge {
+    margin-bottom: 2rem;
+    font-size: clamp(3.5rem, 12vw, 10rem);
+  }
+
   .section-title {
     font-size: clamp(3rem, 5vw, 5rem);
     margin-bottom: 2rem;
+  }
+
+  .section-title.section-title--challenge {
+    font-size: clamp(3.5rem, 12vw, 10rem);
+    margin-bottom: 2rem;
+  }
+
+  .section--puzzles .section-title--challenge {
+    font-size: clamp(2.5rem, 4.5vw, 4.75rem);
+    margin-bottom: 0.65rem;
+  }
+
+  .puzzle-reference-grid {
+    gap: 0.75rem;
+    max-width: min(100%, 96rem);
+    height: min(82vh, calc(100dvh - 5.75rem));
+    max-height: min(82vh, 1104px);
+    min-height: 360px;
+    margin-bottom: 0.65rem;
+  }
+
+  .puzzle-reference-cell {
+    border-radius: 14px;
+    border-width: 2px;
   }
 
   .card {
@@ -197,41 +403,22 @@
     font-size: 1.3rem;
   }
 
-  .question-text {
-    font-size: clamp(2.5rem, 4vw, 4rem);
-    margin-bottom: 2.5rem;
-  }
-
-  .sw-image-wrapper {
-    border-radius: 28px;
-  }
-
-  .choices-stack {
-    gap: 1.75rem;
-  }
-
-  .choice-box {
-    border-radius: 28px;
-    padding: 1rem;
-    border-width: 4px;
-  }
-
-  .choice-box img {
-    border-radius: 20px;
-    max-height: 38vh;
-  }
-
   .timer-box {
-    padding: 4rem 6rem;
+    padding: 4.5rem 6rem;
     border-radius: 32px;
   }
 
+  .timer-hero {
+    max-width: min(96vw, 640px);
+    margin: 0.5rem auto 0.35rem;
+  }
+
   .timer-display {
-    font-size: clamp(10rem, 18vw, 16rem);
+    font-size: clamp(11rem, 22vw, 16rem);
   }
 
   .timer-label {
-    font-size: 2rem;
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
   }
 
   .btn {

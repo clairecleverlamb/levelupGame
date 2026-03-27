@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import './GameFourCorners.css'
 
+const TIMER_TOTAL_SECONDS = 120
+const RING_R = 100
+const RING_LEN = 2 * Math.PI * RING_R
+
 function formatTime(sec) {
   const m = Math.floor(sec / 60)
   const s = sec % 60
@@ -10,35 +14,22 @@ function formatTime(sec) {
 
 export function FourCornersQuestion() {
   return (
-    <div className="section">
-      <p className="section-label">Game 1</p>
-      <h2 className="section-title">4 Corners</h2>
-      <div className="card">
-        <div className="corners-question">
-          <p className="question-text">Do you enjoy the Summer or Winter more?</p>
-          <div className="sw-image-wrapper">
-            <img src="/summerwinter.png" alt="Summer vs Winter" className="sw-image" />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
+    <div className="section section--puzzles">
+      <p className="section-label section-label--challenge">Challenge 1</p>
+      <h2 className="section-title section-title--challenge">Fit Your Puzzles</h2>
 
-export function FourCornersQuestion2() {
-  return (
-    <div className="section">
-      <div className="card">
-        <div className="corners-question">
-          <p className="question-text">On a nice day, do you prefer taking a walk or staying indoors?</p>
-          <div className="choices-stack">
-            <div className="choice-box choice-walk">
-              <img src="/walk.jpg" alt="Taking a walk" />
-            </div>
-            <div className="choice-box choice-indoor">
-              <img src="/indoor.png" alt="Staying indoors" />
-            </div>
-          </div>
+      <div className="puzzle-reference-grid" aria-label="Puzzle reference">
+        <div className="puzzle-reference-cell">
+          <img src="/p1.png" alt="Puzzle reference 1" className="puzzle-reference-img" />
+        </div>
+        <div className="puzzle-reference-cell">
+          <img src="/p2.png" alt="Puzzle reference 2" className="puzzle-reference-img" />
+        </div>
+        <div className="puzzle-reference-cell">
+          <img src="/p3.png" alt="Puzzle reference 3" className="puzzle-reference-img" />
+        </div>
+        <div className="puzzle-reference-cell">
+          <img src="/p4.png" alt="Puzzle reference 4" className="puzzle-reference-img" />
         </div>
       </div>
     </div>
@@ -79,7 +70,7 @@ function playTimesUpSound() {
 }
 
 export function FourCornersTimer() {
-  const [seconds, setSeconds] = useState(120)
+  const [seconds, setSeconds] = useState(TIMER_TOTAL_SECONDS)
   const [isRunning, setIsRunning] = useState(false)
   const intervalRef = useRef(null)
 
@@ -100,9 +91,65 @@ export function FourCornersTimer() {
 
   return (
     <div className="section">
-      <div className={`timer-box ${seconds <= 30 ? 'timer-warning' : ''}`}>
-        <p className="section-label">Get to Know Each Other — Switch Timer</p>
-        <div className="timer-display">{formatTime(seconds)}</div>
+      <div
+        className={`timer-box ${seconds <= 30 ? 'timer-warning' : ''} ${isRunning ? 'timer-box--running' : ''}`}
+      >
+        <p className="section-label timer-box__eyebrow">
+          Get to Know Each Other — Switch Timer
+        </p>
+        <div className="timer-hero">
+          <svg
+            className="timer-ring-svg"
+            viewBox="0 0 240 240"
+            aria-hidden
+            focusable="false"
+          >
+            <defs>
+              <linearGradient
+                id="timer-ring-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor="#a3e635" />
+                <stop offset="50%" stopColor="#22d3ee" />
+                <stop offset="100%" stopColor="#4ade80" />
+              </linearGradient>
+              <linearGradient
+                id="timer-ring-gradient-warn"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stopColor="#fbbf24" />
+                <stop offset="100%" stopColor="#f97316" />
+              </linearGradient>
+            </defs>
+            <circle
+              className="timer-ring-track"
+              cx="120"
+              cy="120"
+              r={RING_R}
+              fill="none"
+            />
+            <circle
+              className="timer-ring-fill"
+              cx="120"
+              cy="120"
+              r={RING_R}
+              fill="none"
+              strokeLinecap="round"
+              strokeDasharray={RING_LEN}
+              strokeDashoffset={RING_LEN * (1 - seconds / TIMER_TOTAL_SECONDS)}
+              transform="rotate(-90 120 120)"
+            />
+          </svg>
+          <div className="timer-display" role="timer" aria-live="polite">
+            {formatTime(seconds)}
+          </div>
+        </div>
         <p className="timer-label">Time until switch to next group</p>
         <div className="timer-buttons">
           <button
@@ -122,7 +169,7 @@ export function FourCornersTimer() {
             className="btn btn-secondary"
             onClick={() => {
               setIsRunning(false)
-              setSeconds(120)
+              setSeconds(TIMER_TOTAL_SECONDS)
             }}
           >
             Reset
