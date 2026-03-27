@@ -13,7 +13,6 @@ export default function WinnerAnnouncement({ onAnnounce }) {
       <div className="winner-spotlight">
         <p className="section-label section-label--challenge winner-kicker">Celebration</p>
         <h2 className="winner-title">Announce Winners</h2>
-        <p className="winner-sub">Name the crew who took it home — then make it official.</p>
         <div className="winner-input-group">
           <input
             type="text"

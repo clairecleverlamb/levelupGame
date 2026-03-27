@@ -171,68 +171,45 @@
   color: rgba(254, 215, 170, 0.95);
 }
 
-/* Big digital readout + progress ring */
+/* Big digital readout (no ring) */
 .timer-hero {
-  position: relative;
-  width: min(100%, 36rem);
-  aspect-ratio: 1;
-  max-width: min(96vw, 560px);
-  margin: 0.35rem auto 0.25rem;
-  display: grid;
-  place-items: center;
-}
-
-.timer-ring-svg {
-  position: absolute;
-  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 0 24px rgba(163, 230, 53, 0.2));
-}
-
-.timer-ring-track {
-  stroke: rgba(163, 230, 53, 0.14);
-  stroke-width: 10;
-}
-
-.timer-ring-fill {
-  stroke: url(#timer-ring-gradient);
-  stroke-width: 10;
-  transition: stroke-dashoffset 1s linear;
-}
-
-.timer-box.timer-warning .timer-ring-track {
-  stroke: rgba(251, 191, 36, 0.2);
-}
-
-.timer-box.timer-warning .timer-ring-fill {
-  stroke: url(#timer-ring-gradient-warn);
+  max-width: min(96vw, 44rem);
+  margin: 0.5rem auto 0.35rem;
+  padding: 0.35rem 0 0.15rem;
 }
 
 .timer-display {
   position: relative;
-  z-index: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
   font-family: 'Orbitron', sans-serif;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  font-size: clamp(7.5rem, 20vw, 14rem);
-  margin: 0;
-  padding: 0 0.15em;
-  letter-spacing: 0.04em;
+  font-kerning: none;
+  letter-spacing: 0;
+  font-size: clamp(5.25rem, 13vw, 11rem);
   line-height: 0.95;
   color: #ecfccb;
+  /* Symmetric glow so digits don’t look shifted */
   text-shadow:
     0 3px 0 rgba(0, 0, 0, 0.5),
-    0 0 60px rgba(163, 230, 53, 0.45),
-    0 0 100px rgba(34, 211, 238, 0.18);
+    0 0 40px rgba(163, 230, 53, 0.5),
+    0 0 72px rgba(34, 211, 238, 0.28),
+    0 0 40px rgba(163, 230, 53, 0.35);
 }
 
 .timer-box.timer-warning .timer-display {
   color: #fde68a;
   text-shadow:
     0 3px 0 rgba(0, 0, 0, 0.45),
-    0 0 56px rgba(251, 191, 36, 0.5),
-    0 0 90px rgba(245, 158, 11, 0.25);
+    0 0 48px rgba(251, 191, 36, 0.55),
+    0 0 80px rgba(245, 158, 11, 0.35),
+    0 0 48px rgba(251, 191, 36, 0.4);
 }
 
 .timer-box--running .timer-display {
@@ -267,15 +244,17 @@
     filter: brightness(1);
     text-shadow:
       0 3px 0 rgba(0, 0, 0, 0.45),
-      0 0 56px rgba(251, 191, 36, 0.5),
-      0 0 90px rgba(245, 158, 11, 0.25);
+      0 0 48px rgba(251, 191, 36, 0.55),
+      0 0 80px rgba(245, 158, 11, 0.35),
+      0 0 48px rgba(251, 191, 36, 0.4);
   }
   50% {
     filter: brightness(1.1);
     text-shadow:
       0 3px 0 rgba(0, 0, 0, 0.45),
-      0 0 76px rgba(251, 191, 36, 0.72),
-      0 0 110px rgba(239, 68, 68, 0.2);
+      0 0 64px rgba(251, 191, 36, 0.75),
+      0 0 100px rgba(245, 158, 11, 0.45),
+      0 0 64px rgba(251, 191, 36, 0.5);
   }
 }
 
@@ -340,10 +319,6 @@
   .timer-box--running .timer-display,
   .timer-box.timer-warning.timer-box--running .timer-display {
     animation: none;
-  }
-
-  .timer-ring-fill {
-    transition: none;
   }
 }
 
@@ -414,7 +389,7 @@
   }
 
   .timer-display {
-    font-size: clamp(11rem, 22vw, 16rem);
+    font-size: clamp(8.5rem, 16vw, 13rem);
   }
 
   .timer-label {

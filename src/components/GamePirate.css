@@ -9,8 +9,6 @@
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(15, 23, 42, 0.15);
   margin-bottom: 0;
-  /* PNG had dark “checkerboard” fringe; screen hides near-black on page bg */
-  mix-blend-mode: screen;
 }
 
 /* ====== Large Screen Overrides ====== */

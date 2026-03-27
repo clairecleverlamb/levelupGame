@@ -2,8 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import './GameFourCorners.css'
 
 const TIMER_TOTAL_SECONDS = 120
-const RING_R = 100
-const RING_LEN = 2 * Math.PI * RING_R
 
 function formatTime(sec) {
   const m = Math.floor(sec / 60)
@@ -98,54 +96,6 @@ export function FourCornersTimer() {
           Get to Know Each Other — Switch Timer
         </p>
         <div className="timer-hero">
-          <svg
-            className="timer-ring-svg"
-            viewBox="0 0 240 240"
-            aria-hidden
-            focusable="false"
-          >
-            <defs>
-              <linearGradient
-                id="timer-ring-gradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#a3e635" />
-                <stop offset="50%" stopColor="#22d3ee" />
-                <stop offset="100%" stopColor="#4ade80" />
-              </linearGradient>
-              <linearGradient
-                id="timer-ring-gradient-warn"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="0%"
-              >
-                <stop offset="0%" stopColor="#fbbf24" />
-                <stop offset="100%" stopColor="#f97316" />
-              </linearGradient>
-            </defs>
-            <circle
-              className="timer-ring-track"
-              cx="120"
-              cy="120"
-              r={RING_R}
-              fill="none"
-            />
-            <circle
-              className="timer-ring-fill"
-              cx="120"
-              cy="120"
-              r={RING_R}
-              fill="none"
-              strokeLinecap="round"
-              strokeDasharray={RING_LEN}
-              strokeDashoffset={RING_LEN * (1 - seconds / TIMER_TOTAL_SECONDS)}
-              transform="rotate(-90 120 120)"
-            />
-          </svg>
           <div className="timer-display" role="timer" aria-live="polite">
             {formatTime(seconds)}
           </div>

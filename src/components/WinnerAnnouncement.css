@@ -48,16 +48,6 @@
     0 0 80px rgba(163, 230, 53, 0.35);
 }
 
-.winner-sub {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(1.1rem, 2.8vw, 1.65rem);
-  font-weight: 500;
-  color: rgba(212, 212, 216, 0.95);
-  margin: 0 auto clamp(2rem, 5vw, 3rem);
-  max-width: 36ch;
-  line-height: 1.45;
-}
-
 .winner-input-group {
   display: flex;
   flex-direction: column;

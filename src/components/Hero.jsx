@@ -52,8 +52,9 @@ export default function Hero() {
 
           <h1 className="hero-headline">
             <div className="hero-title-row">
-              <span className="hero-title-text">
-                <span className="hero-line hero-line--primary">Level up</span>
+              <span className="hero-title-text hero-title-text--stack">
+                <span className="hero-line hero-line--primary">Level</span>
+                <span className="hero-line hero-line--primary">up</span>
               </span>
             </div>
             <span className="hero-line hero-line--secondary">ICE BREAKER</span>

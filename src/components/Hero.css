@@ -46,6 +46,14 @@
   pointer-events: none;
   /* Feathered edges into deep green/black — not a hard rectangle */
   background:
+    /* Hide occasional bright seam on the right edge of the video */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 72%,
+      rgba(3, 12, 11, 0.45) 88%,
+      rgba(2, 8, 7, 0.9) 100%
+    ),
     radial-gradient(ellipse 85% 70% at 50% 42%, transparent 0%, transparent 38%, rgba(3, 12, 11, 0.35) 72%, rgba(2, 8, 7, 0.82) 100%),
     radial-gradient(ellipse 120% 90% at 50% 100%, rgba(0, 0, 0, 0.45) 0%, transparent 45%),
     radial-gradient(ellipse 100% 55% at 50% 0%, rgba(4, 14, 12, 0.5) 0%, transparent 42%),
@@ -219,18 +227,33 @@
   text-align: center;
 }
 
+/* Two centered lines: “Level” / “up” — avoids wrap misalignment */
+.hero-title-text--stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.02rem, 0.45vw, 0.3rem);
+  width: 100%;
+}
+
+.hero-title-text--stack .hero-line--primary {
+  font-size: clamp(4.85rem, 24vw, 18rem);
+  line-height: 0.86;
+}
+
 /* PRIMARY — static gradient (no anim — avoids jank with background video) */
 .hero-line--primary {
   display: block;
   font-family: 'Titan One', sans-serif;
   font-weight: 400;
-  font-size: clamp(4.75rem, 23vw, 16.5rem);
+  font-size: clamp(6rem, 30vw, 21rem);
   letter-spacing: -0.04em;
   line-height: 0.88;
   text-transform: capitalize;
   position: relative;
   z-index: 1;
-  -webkit-text-stroke: 2px rgba(10, 40, 18, 0.55);
+  -webkit-text-stroke: 1.5px rgba(10, 40, 18, 0.42);
   background: linear-gradient(
     105deg,
     #fffef0 0%,
@@ -246,35 +269,41 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* Fewer filter layers than before — static, cheaper to composite */
-  filter: drop-shadow(0 9px 0 rgba(8, 52, 22, 0.72))
-    drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45))
-    drop-shadow(0 0 36px rgba(163, 230, 53, 0.4));
+  /* Light touch: small rim + soft tint so the background stays visible */
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.35))
+    drop-shadow(0 0 6px rgba(34, 211, 238, 0.22))
+    drop-shadow(0 0 16px rgba(163, 230, 53, 0.14))
+    drop-shadow(0 9px 0 rgba(8, 52, 22, 0.72))
+    drop-shadow(0 12px 26px rgba(0, 0, 0, 0.42));
 }
 
 /* SECONDARY — one line, larger; solid + text-shadow (no filter anim / clip churn) */
 .hero-line--secondary {
   display: block;
+  align-self: center;
+  text-align: center;
+  width: 100%;
   font-family: 'Orbitron', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.35rem, 4.2vw, 5.25rem);
-  letter-spacing: 0.12em;
+  font-size: clamp(1.85rem, 6.5vw, 8rem);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
   padding-top: 0.65rem;
   margin-top: 0.35rem;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 100%;
   line-height: 1.15;
   border-top: 2px solid rgba(186, 230, 253, 0.65);
   color: #f0fdff;
   -webkit-text-fill-color: #f0fdff;
   text-shadow:
-    0 0 2px rgba(255, 255, 255, 0.95),
-    0 1px 0 rgba(8, 40, 55, 0.9),
-    0 0 18px rgba(165, 243, 252, 0.85),
-    0 0 36px rgba(56, 189, 248, 0.55),
-    0 0 56px rgba(34, 211, 238, 0.35),
-    0 4px 20px rgba(0, 0, 0, 0.65);
+    0 0 1px rgba(255, 255, 255, 0.85),
+    0 1px 0 rgba(8, 40, 55, 0.85),
+    0 0 10px rgba(165, 243, 252, 0.45),
+    0 0 22px rgba(56, 189, 248, 0.28),
+    0 4px 18px rgba(0, 0, 0, 0.55);
 }
 
 .hero-line--secondary::after {
@@ -332,6 +361,6 @@
 
   .hero-line--secondary {
     letter-spacing: 0.08em;
-    font-size: clamp(0.88rem, 3.1vw, 5.25rem);
+    font-size: clamp(1.15rem, 4.8vw, 8rem);
   }
 }
