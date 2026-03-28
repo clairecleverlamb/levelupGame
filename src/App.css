@@ -68,3 +68,13 @@
     rgba(8, 12, 11, 0.5) 100%
   );
 }
+
+/* Tic tac toe + demo images: stack vertically so tall content isn’t clipped */
+.app section.section--tic-stack {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  min-height: auto;
+  padding-top: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
