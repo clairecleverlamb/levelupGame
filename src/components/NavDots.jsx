@@ -8,6 +8,7 @@ const sections = [
   { id: 'olympics', href: '#olympics' },
   { id: 'egg-pass', href: '#egg-pass' },
   { id: 'floor-lava', href: '#floor-lava' },
+  { id: 'floor-lava-video', href: '#floor-lava-video' },
   { id: 'game3-intro', href: '#game3-intro' },
   { id: 'tic-tac-toe', href: '#tic-tac-toe' },
   { id: 'winners', href: '#winners' },

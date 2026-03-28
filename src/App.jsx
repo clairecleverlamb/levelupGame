@@ -7,6 +7,7 @@ import { BiathlonIntro } from './components/GameBiathlon'
 import WinterOlympics from './components/WinterOlympics'
 import PassingEgg from './components/PassingEgg'
 import FloorIsLava from './components/FloorIsLava'
+import FloorLavaVideo from './components/FloorLavaVideo'
 import TicTacToe from './components/TicTacToe'
 import TicTacToeDemoImages from './components/TicTacToeDemoImages'
 import WinnerAnnouncement from './components/WinnerAnnouncement'
@@ -74,6 +75,8 @@ function App() {
         <PassingEgg />
 
         <FloorIsLava />
+
+        <FloorLavaVideo />
 
         {/* Challenge 3: Freeze Frame */}
         <section id="game3-intro">
